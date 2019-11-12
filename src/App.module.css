@@ -15,11 +15,7 @@
     align-items: center;
     background-color: hsl(210, 100%, 31%);
     color: hsl(0, 0%, 91%);
-    padding: 0 20px;
-}
-
-.appTitle {
-    font-size: 20px;
+    padding: 0 40px;
 }
 
 .article {
