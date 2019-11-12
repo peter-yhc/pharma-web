@@ -1,0 +1,27 @@
+.main {
+    display: grid;
+    grid-template-rows: 60px auto;
+    grid-template-columns: minmax(20px, 200px) auto minmax(20px, 200px);
+    grid-template-areas:
+        'header header header'
+        '. article .'
+    ;
+}
+
+.header {
+    grid-area: header;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: hsl(210, 100%, 31%);
+    color: hsl(0, 0%, 91%);
+    padding: 0 20px;
+}
+
+.appTitle {
+    font-size: 20px;
+}
+
+.article {
+    grid-area: article;
+}
