@@ -1,11 +1,10 @@
-import LoginPage from "./LoginPage";
+import LoginPage from './LoginPage';
 
-const withAuthentication = component => {
+const withAuthentication = (component) => {
   if (true) {
-    return component
-  } else {
-    return LoginPage
+    return component;
   }
-}
+  return LoginPage;
+};
 
 export default withAuthentication;
