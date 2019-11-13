@@ -1,0 +1,31 @@
+.button {
+    background-color: var(--theme-color);
+    padding: 12px;
+    width: 96px;
+    border: none;
+    border-radius: 4px;
+    color: var(--color-white);
+    display: flex;
+    cursor: not-allowed;
+}
+
+.loadingIcon {
+    content: ' ';
+    border-width: 2px;
+    border-style: solid;
+    border-color: transparent var(--color-white) var(--color-white) var(--color-white);
+    width: 12px;
+    height: 12px;
+    border-radius: 100%;
+    animation: loadingIcon 1.2s linear infinite;
+    margin-right: 6px;
+}
+
+@keyframes loadingIcon {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
