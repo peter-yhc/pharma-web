@@ -1,4 +1,4 @@
-import LoginPage from './LoginPage';
+import LoginPage from 'authentication/login/LoginPage';
 
 const withAuthentication = (component) => {
   if (true) {

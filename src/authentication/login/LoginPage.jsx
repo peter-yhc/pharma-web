@@ -2,7 +2,7 @@ import React, { useReducer, useState } from 'react';
 import { login } from 'api/PharmaApi';
 import { Redirect } from 'react-router-dom';
 import { LoadingButton, Input, PageTitle } from 'common';
-import styles from './LoginPage.module.css';
+import styles from 'authentication/login/LoginPage.module.css';
 
 function reducer(state, action) {
   switch (action.state) {
