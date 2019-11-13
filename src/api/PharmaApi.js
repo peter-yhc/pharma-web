@@ -10,7 +10,14 @@ const savePatient = async (patientData) => {
 
 const getPatients = async () => ky.get(`${API_HOST}/patients`).json();
 
+const login = async (username, password) => {
+  const request = await ky.post(`${API_HOST}/login`, { js: { username, password } });
+  const token = request.headers;
+  localStorage.setItem('pharma.token', token);
+};
+
 export {
   getPatients,
   savePatient,
+  login,
 };

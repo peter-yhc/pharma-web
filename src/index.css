@@ -1,8 +1,15 @@
+:root {
+  --theme-color: hsl(210, 100%, 31%);
+  --theme-color-darker: hsl(210, 100%, 25%);
+  --color-white: hsl(0, 0%, 95%);
+  --color-dark: hsl(0, 0%, 35%);
+  --color-darker: hsl(0, 0%, 25%);
+}
+
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: hsl(0, 0%, 35%);
   font-family: "Roboto", sans-serif;
   font-size: 14px;
 }

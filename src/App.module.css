@@ -13,8 +13,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: hsl(210, 100%, 31%);
-    color: hsl(0, 0%, 91%);
+    color: var(--theme-color);
     padding: 0 40px;
 }
 
