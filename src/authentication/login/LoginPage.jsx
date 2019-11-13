@@ -1,7 +1,7 @@
 import React, { useReducer, useState } from 'react';
 import { login } from 'api/PharmaApi';
 import { Redirect } from 'react-router-dom';
-import { LoadingButton, Input, PageTitle } from 'common';
+import { Input, LoadingButton, PageTitle } from 'common';
 import styles from 'authentication/login/LoginPage.module.css';
 
 function reducer(state, action) {
@@ -49,28 +49,26 @@ const LoginPage = () => {
     state.formStatus === 'success'
       ? <Redirect to="/" />
       : (
-        <>
-          <section className={styles.page}>
-            <PageTitle>Sign in</PageTitle>
-            <a className={styles.signupLink} href="/signup">Need an account?</a>
-            <form className={styles.form} onSubmit={handleSubmit}>
-              <Input type="text" placeholder="Username" onChange={handleUsernameInput} />
-              <Input type="password" placeholder="Password" onChange={handlePasswordInput} />
-              <div className={[styles.error, state.formStatus === 'error' ? styles.show : null].join(' ')}>
-                <span>Incorrect username or password</span>
-              </div>
-              { state.formStatus === 'working'
-                ? (
-                  <LoadingButton className={styles.loadingButton}>Loading</LoadingButton>
-                )
-                : (
-                  <button className={styles.signInButton} type="submit" disabled={!username && !password}>
+        <section className={styles.page}>
+          <PageTitle>Sign in</PageTitle>
+          <a className={styles.signupLink} href="/signup">Need an account?</a>
+          <form className={styles.form} onSubmit={handleSubmit}>
+            <Input type="text" placeholder="Username" onChange={handleUsernameInput} />
+            <Input type="password" placeholder="Password" onChange={handlePasswordInput} />
+            <div className={[styles.error, state.formStatus === 'error' ? styles.show : null].join(' ')}>
+              <span>Incorrect username or password</span>
+            </div>
+            {state.formStatus === 'working'
+              ? (
+                <LoadingButton className={styles.loadingButton}>Loading</LoadingButton>
+              )
+              : (
+                <button className={styles.signInButton} type="submit" disabled={!username && !password}>
                   Sign in
-                  </button>
-                )}
-            </form>
-          </section>
-        </>
+                </button>
+              )}
+          </form>
+        </section>
       )
   );
 };
