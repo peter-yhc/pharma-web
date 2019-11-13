@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import LoginControl from 'authentication/LoginControl';
 import Title from 'layout/Title';
+import SignupPage from 'authentication/signup/SignupPage';
 import PatientEditorPage from './patient/PatientEditorPage';
 import LoginPage from './authentication/LoginPage';
 import styles from './App.module.css';
@@ -17,6 +18,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={PatientEditorPage} />
           <Route exact path="/login" component={LoginPage} />
+          <Route exact path="/signup" component={SignupPage} />
         </Switch>
       </article>
     </main>
