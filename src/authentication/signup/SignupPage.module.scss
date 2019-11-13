@@ -9,6 +9,9 @@
     flex-direction: column;
     align-items: center;
     position: relative;
+    & > input, p {
+        width: 500px;
+    }
 }
 
 .signupButton {

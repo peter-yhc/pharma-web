@@ -52,7 +52,7 @@ const LoginPage = () => {
       ? <Redirect to="/" />
       : (
         <section className={styles.page}>
-          <PageTitle>Sign in</PageTitle>
+          <PageTitle>Login</PageTitle>
           <a className={styles.signupLink} href="/signup">Need an account?</a>
           <form className={styles.form} onSubmit={handleSubmit}>
             <Input type="text" placeholder="Username" onChange={handleUsernameInput} />
@@ -66,7 +66,7 @@ const LoginPage = () => {
               )
               : (
                 <Button className={styles.signInButton} type="submit" disabled={!username && !password}>
-                  Sign in
+                  Login
                 </Button>
               )}
           </form>

@@ -31,13 +31,12 @@ const SignupPage = () => {
     <section className={styles.page}>
       <PageTitle>Sign up</PageTitle>
       <form className={styles.form} ref={formRef}>
-        <p>
-          * To sign up as an administrator you will need to have
-          the authentication key of the application.
-        </p>
         <Input type="text" placeholder="Username" onChange={handleUsernameChange} required />
         <Input type="email" placeholder="Email" onChange={handleEmailChange} required />
         <Input type="password" placeholder="Authentication Key" onChange={handleAuthKeyChange} required />
+        <p>
+          * To sign up as an administrator you will need to have the authentication key of the application.
+        </p>
         <Button className={styles.signupButton} type="submit" disabled={disabled}>Sign up</Button>
       </form>
     </section>
