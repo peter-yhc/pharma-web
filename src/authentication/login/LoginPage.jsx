@@ -65,7 +65,7 @@ const LoginPage = () => {
                 <LoadingButton className={styles.loadingButton}>Loading</LoadingButton>
               )
               : (
-                <Button className={styles.signInButton} type="submit" disabled={!username && !password}>
+                <Button className={styles.loginButton} type="submit" disabled={!username && !password}>
                   Login
                 </Button>
               )}
