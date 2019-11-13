@@ -1,0 +1,16 @@
+.button {
+  padding: 12px;
+  width: 96px;
+  background-color: var(--theme-color);
+  border: none;
+  border-radius: 4px;
+  color: var(--color-white);
+}
+
+.button:hover {
+  background-color: var(--theme-color-darker);
+}
+
+.button:disabled {
+  background-color: var(--color-dark);
+}

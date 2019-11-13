@@ -13,20 +13,6 @@
 
 .signInButton {
     margin-left: auto;
-    padding: 12px;
-    width: 96px;
-    background-color: var(--theme-color);
-    border: none;
-    border-radius: 4px;
-    color: var(--color-white);
-}
-
-.signInButton:hover {
-    background-color: var(--theme-color-darker);
-}
-
-.signInButton:disabled {
-    background-color: var(--color-dark);
 }
 
 .loadingButton {
