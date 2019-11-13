@@ -1,7 +1,9 @@
 import React, { useReducer, useState } from 'react';
 import { login } from 'api/PharmaApi';
 import { Redirect } from 'react-router-dom';
-import { Input, LoadingButton, PageTitle } from 'common';
+import {
+  Input, LoadingButton, PageTitle, Button,
+} from 'common';
 import styles from 'authentication/login/LoginPage.module.css';
 
 function reducer(state, action) {
@@ -63,9 +65,9 @@ const LoginPage = () => {
                 <LoadingButton className={styles.loadingButton}>Loading</LoadingButton>
               )
               : (
-                <button className={styles.signInButton} type="submit" disabled={!username && !password}>
+                <Button className={styles.signInButton} type="submit" disabled={!username && !password}>
                   Sign in
-                </button>
+                </Button>
               )}
           </form>
         </section>
