@@ -1,7 +1,7 @@
 import React, { useReducer, useState } from 'react';
 import { login } from 'api/PharmaApi';
 import { Redirect } from 'react-router-dom';
-import LoadingButton from 'common/LoadingButton';
+import { LoadingButton, Input } from 'common';
 import styles from './LoginPage.module.css';
 
 function reducer(state, action) {
@@ -56,8 +56,8 @@ const LoginPage = () => {
             </h2>
             <a className={styles.signupLink} href="/signup">Need an account?</a>
             <form className={styles.form} onSubmit={handleSubmit}>
-              <input type="text" placeholder="Username" onChange={handleUsernameInput} />
-              <input type="password" placeholder="Password" onChange={handlePasswordInput} />
+              <Input type="text" placeholder="Username" onChange={handleUsernameInput} />
+              <Input type="password" placeholder="Password" onChange={handlePasswordInput} />
               <div className={[styles.error, state.formStatus === 'error' ? styles.show : null].join(' ')}>
                 <span>Incorrect username or password</span>
               </div>
