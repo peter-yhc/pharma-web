@@ -1,5 +1,5 @@
 import React, { useReducer, useState } from 'react';
-import { login } from 'api/PharmaApi';
+import { adminLogin } from 'api/PharmaApi';
 import { Redirect } from 'react-router-dom';
 import {
   Input, LoadingButton, PageTitle, Button,
@@ -26,17 +26,16 @@ const LoginPage = () => {
   const [username, setUsername] = useState(undefined);
   const [password, setPassword] = useState(undefined);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch({ state: 'working' });
-    login(username, password).then(() => {
-      // setTimeout(() => dispatch({ state: 'success' }), 1000);
-
-      // dispatch({ state: 'success' });
-    }).catch(() => {
+    try {
+      await adminLogin(username, password);
+      dispatch({ state: 'success' });
+    } catch (error) {
       dispatch({ state: 'error' });
       setTimeout(() => dispatch({ state: 'dirty' }), 1000);
-    });
+    }
   };
 
   const handleUsernameInput = (e) => {

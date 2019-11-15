@@ -1,12 +1,17 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Input, PageTitle, Button } from 'common';
+import { adminSignup } from 'api/PharmaApi';
+import { Redirect } from 'react-router-dom';
 import styles from './SignupPage.module.scss';
 
 const SignupPage = () => {
   const [username, setUsername] = useState(undefined);
   const [email, setEmail] = useState(undefined);
-  const [authKey, setAuthKey] = useState(undefined);
+  const [password, setPassword] = useState(undefined);
+  const [repeatPassword, setRepeatPassword] = useState(undefined);
   const [disabled, setDisabled] = useState(true);
+  const [successRedirect, setRedirect] = useState(false);
+  // const [error, setError] = useState(undefined);
   const formRef = useRef();
 
   const handleUsernameChange = (e) => {
@@ -17,29 +22,51 @@ const SignupPage = () => {
     setEmail(e.target.value);
   };
 
-  const handleAuthKeyChange = (e) => {
-    setAuthKey(e.target.value);
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handleRepeatPasswordChange = (e) => {
+    setRepeatPassword(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    adminSignup({
+      username,
+      email,
+      password,
+      repeatPassword,
+    }).then(() => {
+      console.log('sign up success');
+      setRedirect(true);
+    }).catch((error) => {
+      console.log('sign up fail', error);
+    });
   };
 
   useEffect(() => {
-    const anyFieldsEmpty = (!username || !email || !authKey);
+    const anyFieldsEmpty = (!username || !email || !password);
     const invalidForm = (formRef.current && !formRef.current.checkValidity());
-    setDisabled(anyFieldsEmpty || invalidForm);
-  }, [username, email, authKey]);
+    const passwordsDontMatch = password !== repeatPassword;
+    setDisabled(anyFieldsEmpty || invalidForm || passwordsDontMatch);
+  }, [username, email, password, repeatPassword]);
 
   return (
-    <section className={styles.page}>
-      <PageTitle>Sign up</PageTitle>
-      <form className={styles.form} ref={formRef}>
-        <Input type="text" placeholder="Username" onChange={handleUsernameChange} required />
-        <Input type="email" placeholder="Email" onChange={handleEmailChange} required />
-        <Input type="password" placeholder="Authentication Key" onChange={handleAuthKeyChange} required />
-        <p>
-          * To sign up as an administrator you will need to have the authentication key of the application.
-        </p>
-        <Button className={styles.signupButton} type="submit" disabled={disabled}>Sign up</Button>
-      </form>
-    </section>
+    successRedirect
+      ? <Redirect to="/login" />
+      : (
+        <section className={styles.page}>
+          <PageTitle>Sign up</PageTitle>
+          <form className={styles.form} ref={formRef} onSubmit={handleSubmit}>
+            <Input type="text" placeholder="Username" onChange={handleUsernameChange} required />
+            <Input type="email" placeholder="Email" onChange={handleEmailChange} required />
+            <Input type="password" placeholder="Password" onChange={handlePasswordChange} required />
+            <Input type="password" placeholder="Repeat Password" onChange={handleRepeatPasswordChange} required />
+            <Button className={styles.signupButton} type="submit" disabled={disabled}>Sign up</Button>
+          </form>
+        </section>
+      )
   );
 };
 

@@ -1,25 +1,42 @@
-import ky from 'ky';
+import axios from 'axios';
 
-const API_HOST = 'https://3yfu0goxx7.execute-api.ap-southeast-2.amazonaws.com/dev';
+const API_HOST = 'https://y3fze98q5l.execute-api.ap-southeast-2.amazonaws.com/dev';
 
 const savePatient = async (patientData) => {
-  const parsed = await ky.post(`${API_HOST}/patients`, { js: patientData }).json();
+  const parsed = await axios.post(`${API_HOST}/patients`, { js: patientData }).json();
 
   console.log(parsed);
 };
 
-const getPatients = async () => ky.get(`${API_HOST}/patients`).json();
+const getPatients = async () => {
+  const result = await axios({
+    method: 'get',
+    url: `${API_HOST}/patients`,
+    headers: { Authorization: localStorage.get('pharma.token') },
+    responseType: 'json',
+  });
+  return result;
+};
 
-const login = async (username, password) => {
-  console.log('logging in');
-  // const request = await ky.post(`${API_HOST}/login`, { js: { username, password } });
-  // const token = request.headers;
-  // localStorage.setItem('pharma.token', token);
-  // throw new Error();
+const adminSignup = async ({
+  username, password, repeatPassword, email,
+}) => axios.post(`${API_HOST}/signup`, {
+  json: {
+    username, password, repeatPassword, email,
+  },
+});
+
+const adminLogin = async (username, password) => {
+  const response = await ky.post(`${API_HOST}/login`, {
+    json: { username, password },
+  });
+  const token = response.headers.get('x-amzn-remapped-authorization');
+  localStorage.setItem('pharma.token', token);
 };
 
 export {
   getPatients,
   savePatient,
-  login,
+  adminLogin,
+  adminSignup,
 };
