@@ -12,7 +12,7 @@ const getPatients = async () => {
   const result = await axios({
     method: 'get',
     url: `${API_HOST}/patients`,
-    headers: { Authorization: localStorage.get('pharma.token') },
+    headers: { Authorization: localStorage.getItem('pharma.token') },
     responseType: 'json',
   });
   return result;
@@ -21,15 +21,11 @@ const getPatients = async () => {
 const adminSignup = async ({
   username, password, repeatPassword, email,
 }) => axios.post(`${API_HOST}/signup`, {
-  json: {
-    username, password, repeatPassword, email,
-  },
+  username, password, repeatPassword, email,
 });
 
 const adminLogin = async (username, password) => {
-  const response = await ky.post(`${API_HOST}/login`, {
-    json: { username, password },
-  });
+  const response = await axios.post(`${API_HOST}/login`, { username, password });
   const token = response.headers.get('x-amzn-remapped-authorization');
   localStorage.setItem('pharma.token', token);
 };
