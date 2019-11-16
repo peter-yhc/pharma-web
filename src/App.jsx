@@ -4,6 +4,7 @@ import LoginControl from 'authentication/login/LoginControl';
 import Title from 'layout/Title';
 import SignupPage from 'authentication/signup/SignupPage';
 import LoginPage from 'authentication/login/LoginPage';
+import withAuthentication from 'authentication/withAuthentication';
 import PatientEditorPage from './patient/PatientEditorPage';
 import styles from './App.module.css';
 
@@ -16,7 +17,7 @@ function App() {
       </header>
       <article className={styles.article}>
         <Switch>
-          <Route exact path="/" component={PatientEditorPage} />
+          <Route exact path="/" component={withAuthentication(PatientEditorPage)} />
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/signup" component={SignupPage} />
         </Switch>

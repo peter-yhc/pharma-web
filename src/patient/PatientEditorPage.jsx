@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import withAuthentication from 'authentication/withAuthentication';
-import { getPatients } from 'api/PharmaApi';
+import React, {useEffect, useState} from 'react';
+import {getPatients} from 'api/PharmaApi';
 
 const PatientEditorPage = () => {
   const [patients, setPatients] = useState([]);
@@ -19,4 +18,4 @@ const PatientEditorPage = () => {
   );
 };
 
-export default withAuthentication(PatientEditorPage);
+export default PatientEditorPage;

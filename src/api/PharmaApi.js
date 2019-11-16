@@ -31,9 +31,24 @@ const adminLogin = async (username, password) => {
   localStorage.setItem('pharma.token', token);
 };
 
+const checkToken = async () => {
+  try {
+    await axios({
+      method: 'get',
+      url: `${API_HOST}/check-token`,
+      headers: { Authorization: localStorage.getItem('pharma.token') },
+      responseType: 'json',
+    });
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
 export {
   getPatients,
   savePatient,
   adminLogin,
   adminSignup,
+  checkToken,
 };
