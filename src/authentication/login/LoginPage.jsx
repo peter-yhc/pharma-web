@@ -1,6 +1,6 @@
 import React, { useReducer, useState } from 'react';
-import { login } from 'api/PharmaApi';
-import { Redirect } from 'react-router-dom';
+import { adminLogin } from 'api/PharmaApi';
+import { Link, Redirect } from 'react-router-dom';
 import {
   Input, LoadingButton, PageTitle, Button,
 } from 'common';
@@ -26,17 +26,17 @@ const LoginPage = () => {
   const [username, setUsername] = useState(undefined);
   const [password, setPassword] = useState(undefined);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch({ state: 'working' });
-    login(username, password).then(() => {
-      // setTimeout(() => dispatch({ state: 'success' }), 1000);
-
-      // dispatch({ state: 'success' });
-    }).catch(() => {
+    try {
+      await adminLogin(username, password);
+      dispatch({ state: 'success' });
+    } catch (error) {
+      console.log('login error', error);
       dispatch({ state: 'error' });
       setTimeout(() => dispatch({ state: 'dirty' }), 1000);
-    });
+    }
   };
 
   const handleUsernameInput = (e) => {
@@ -53,7 +53,7 @@ const LoginPage = () => {
       : (
         <section className={styles.page}>
           <PageTitle>Login</PageTitle>
-          <a className={styles.signupLink} href="/signup">Need an account?</a>
+          <Link className={styles.signupLink} to="/signup">Need an account?</Link>
           <form className={styles.form} onSubmit={handleSubmit}>
             <Input type="text" placeholder="Username" onChange={handleUsernameInput} />
             <Input type="password" placeholder="Password" onChange={handlePasswordInput} />
