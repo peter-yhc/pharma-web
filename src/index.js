@@ -4,11 +4,21 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from 'App';
 import { BrowserRouter } from 'react-router-dom';
+import AuthContext from 'authentication/AuthContext';
 import * as serviceWorker from './serviceWorker';
+
+const auth = {
+  authenticated: undefined,
+  setAuthenticated(value) {
+    this.authenticated = value;
+  },
+};
 
 ReactDOM.render(
   <BrowserRouter>
-    <App />
+    <AuthContext.Provider value={auth}>
+      <App />
+    </AuthContext.Provider>
   </BrowserRouter>,
   document.getElementById('root'),
 );

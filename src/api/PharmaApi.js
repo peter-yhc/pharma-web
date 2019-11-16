@@ -4,7 +4,6 @@ const API_HOST = 'https://y3fze98q5l.execute-api.ap-southeast-2.amazonaws.com/de
 
 const savePatient = async (patientData) => {
   const parsed = await axios.post(`${API_HOST}/patients`, { js: patientData }).json();
-
   console.log(parsed);
 };
 
@@ -31,24 +30,9 @@ const adminLogin = async (username, password) => {
   localStorage.setItem('pharma.token', token);
 };
 
-const checkToken = async () => {
-  try {
-    await axios({
-      method: 'get',
-      url: `${API_HOST}/check-token`,
-      headers: { Authorization: localStorage.getItem('pharma.token') },
-      responseType: 'json',
-    });
-  } catch (error) {
-    console.log(error);
-    throw error;
-  }
-};
-
 export {
   getPatients,
   savePatient,
   adminLogin,
   adminSignup,
-  checkToken,
 };

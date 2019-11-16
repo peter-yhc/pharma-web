@@ -1,13 +1,18 @@
-import React, {useEffect, useState} from 'react';
-import {getPatients} from 'api/PharmaApi';
+import React, { useContext, useEffect, useState } from 'react';
+import { getPatients } from 'api/PharmaApi';
+import AuthContext from 'authentication/AuthContext';
 
 const PatientEditorPage = () => {
   const [patients, setPatients] = useState([]);
-
+  const authContext = useContext(AuthContext);
   useEffect(() => {
-    getPatients().then((data) => {
-      setPatients(data);
-    });
+    getPatients()
+      .then((data) => {
+        setPatients(data);
+      })
+      .catch(() => {
+        authContext.setAuthenticated(false);
+      });
   }, []);
 
   console.log(patients);

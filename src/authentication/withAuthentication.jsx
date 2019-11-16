@@ -1,32 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { checkToken } from 'api/PharmaApi';
+import React, { useContext } from 'react';
 import { Redirect } from 'react-router-dom';
+import AuthContext from 'authentication/AuthContext';
 
 const withAuthentication = (WrappedComponent) => () => {
-  const [authenticated, setAuthenticated] = useState('checking');
-
-  useEffect(() => {
-    checkToken()
-      .then(() => setAuthenticated('good'))
-      .catch(() => setAuthenticated('bad'));
-  }, []);
-
-  const show = () => {
-    switch (authenticated) {
-      case 'good': {
-        return <WrappedComponent />;
-      }
-      case 'bad': {
-        return <Redirect to="/login" />;
-      }
-      default: {
-        return <span>Checking token</span>;
-      }
-    }
-  };
+  const authContext = useContext(AuthContext);
 
   return (
-    show()
+    authContext.authenticated
+      ? <WrappedComponent />
+      : <Redirect to="/login" />
   );
 };
 
