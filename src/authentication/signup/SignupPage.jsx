@@ -38,7 +38,6 @@ const SignupPage = () => {
       password,
       repeatPassword,
     }).then(() => {
-      console.log('sign up success');
       setRedirect(true);
     }).catch((error) => {
       console.log('sign up fail', error);
