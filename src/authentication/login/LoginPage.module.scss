@@ -16,7 +16,13 @@
 
 .loginButton {
     margin-left: auto;
+    color: var(--color-white);
+    background-color: var(--theme-color);
+    &:not(:disabled):hover {
+        background-color: var(--theme-color-darker);
+    }
 }
+
 
 .loadingButton {
     margin-left: auto;
@@ -25,12 +31,11 @@
 .signupLink {
     color: var(--color-dark);
     text-decoration: none;
-    margin-bottom: var(--margin-1)
-}
-
-.signupLink:hover {
-    color: var(--color-more-dark);
-    text-decoration: underline;
+    margin-bottom: var(--margin-1);
+    &:hover {
+        color: var(--color-more-dark);
+        text-decoration: underline;
+    }
 }
 
 .error {
