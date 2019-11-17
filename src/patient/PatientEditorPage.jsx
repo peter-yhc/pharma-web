@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { getPatients } from 'api/PharmaApi';
 import AuthContext from 'authentication/AuthContext';
+import PatientDataTable from 'patient/PatientDataTable';
+import { PageTitle } from 'common';
 
 const PatientEditorPage = () => {
   const [patients, setPatients] = useState([]);
@@ -15,10 +17,10 @@ const PatientEditorPage = () => {
       });
   }, []);
 
-  console.log(patients);
   return (
     <>
-      <span>Patient Page</span>
+      <PageTitle>Add / Edit Patient data</PageTitle>
+      <PatientDataTable />
     </>
   );
 };

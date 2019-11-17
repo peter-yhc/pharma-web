@@ -1,0 +1,37 @@
+.patientTable {
+  font-size: 12px;
+  white-space: nowrap;
+  border-spacing: 0;
+  border: 1px solid hsl(0, 0%, 82%);
+  box-shadow: 0px 2px 1px -1px hsla(0, 0%, 0%, 0.2), 0px 1px 1px 0px hsla(0, 0%, 0%, 0.14), 0px 1px 3px 0px hsla(0, 0%, 0%, 0.12);
+}
+
+.patientTableHeader {
+  & th {
+    padding: var(--margin-2);
+    color: var(--color-less-dark);
+    text-transform: uppercase;
+    text-align: left;
+    border-bottom: 1px solid rgba(224, 224, 224, 1);
+  }
+}
+
+.patientTableBody {
+  & tr {
+    &:hover {
+      background-color: hsl(0, 0%, 95%);
+    }
+    & td {
+      border: 0;
+      padding: var(--margin-2);
+    }
+    &:not(:last-child) > td {
+      border-bottom: 1px solid rgba(224, 224, 224, 1);
+    }
+  }
+}
+
+.iconCell {
+  padding: 0 var(--margin-2) !important; // override padding caused of edit icon
+  font-size: 20px;
+}
