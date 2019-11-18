@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from 'authentication/login/LoginControl.module.css';
+import styles from 'pages/login/components/LoginControl.module.css';
 
 const LoginControl = () => {
   console.log('login control');

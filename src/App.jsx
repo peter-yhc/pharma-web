@@ -1,11 +1,11 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import LoginControl from 'authentication/login/LoginControl';
-import Title from 'layout/Title';
-import SignupPage from 'authentication/signup/SignupPage';
-import LoginPage from 'authentication/login/LoginPage';
+import LoginControl from 'pages/login/components/LoginControl';
+import { Title } from 'common';
+import SignupPage from 'pages/signup/SignupPage';
+import LoginPage from 'pages/login/LoginPage';
 import withAuthentication from 'authentication/withAuthentication';
-import PatientEditorPage from './patient/PatientEditorPage';
+import PatientEditorPage from './pages/patient/PatientEditorPage';
 import styles from './App.module.css';
 
 function App() {

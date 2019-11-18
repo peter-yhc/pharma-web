@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './PatientDataTable.module.scss';
+import styles from 'pages/patient/components/PatientDataTable.module.scss';
 
 const PatientDataTable = ({patients}) => {
   const renderPatientData = () => {

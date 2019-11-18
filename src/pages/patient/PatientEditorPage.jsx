@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { getPatients } from 'api/PharmaApi';
 import AuthContext from 'authentication/AuthContext';
-import PatientDataTable from 'patient/PatientDataTable';
+import PatientDataTable from 'pages/patient/components/PatientDataTable';
 import { PageTitle } from 'common';
-import NewPatientModal from 'patient/NewPatientModal';
+import NewPatientModal from 'pages/patient/components/NewPatientModal';
 
 const PatientEditorPage = () => {
   const [patients, setPatients] = useState([]);

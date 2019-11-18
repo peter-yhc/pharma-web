@@ -4,7 +4,7 @@ import { Link, Redirect } from 'react-router-dom';
 import {
   Input, LoadingButton, PageTitle, Button,
 } from 'common';
-import styles from 'authentication/login/LoginPage.module.scss';
+import styles from 'pages/login/LoginPage.module.scss';
 import AuthContext from 'authentication/AuthContext';
 
 function reducer(state, action) {

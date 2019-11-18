@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { Button } from 'common';
-import styles from './NewPatientModal.module.scss';
+import styles from 'pages/patient/components/NewPatientModal.module.scss';
 
 const NewPatientModal = () => {
   const modalRef = useRef();
