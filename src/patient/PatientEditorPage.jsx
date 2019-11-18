@@ -3,6 +3,7 @@ import { getPatients } from 'api/PharmaApi';
 import AuthContext from 'authentication/AuthContext';
 import PatientDataTable from 'patient/PatientDataTable';
 import { PageTitle } from 'common';
+import NewPatientModal from 'patient/NewPatientModal';
 
 const PatientEditorPage = () => {
   const [patients, setPatients] = useState([]);
@@ -10,6 +11,7 @@ const PatientEditorPage = () => {
   useEffect(() => {
     getPatients()
       .then((data) => {
+        console.log(data);
         setPatients(data);
       })
       .catch(() => {
@@ -20,7 +22,8 @@ const PatientEditorPage = () => {
   return (
     <>
       <PageTitle>Add / Edit Patient data</PageTitle>
-      <PatientDataTable />
+      <PatientDataTable patients={patients} />
+      <NewPatientModal />
     </>
   );
 };

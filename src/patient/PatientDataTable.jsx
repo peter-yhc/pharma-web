@@ -1,14 +1,32 @@
 import React from 'react';
 import styles from './PatientDataTable.module.scss';
 
-const PatientDataTable = () => {
-  console.log('tab');
+const PatientDataTable = ({patients}) => {
+  const renderPatientData = () => {
+    patients.map((patient) => (
+      <tr>
+        <td className={styles.iconCell}><i className="la la-pen"/></td>
+        <td>{patient.username}</td>
+        <td>{patient.name}</td>
+        <td>{patient.age}</td>
+        <td>{patient.sex}</td>
+        <td>{patient.address}</td>
+        <td>{patient.city}</td>
+        <td>{patient.country}</td>
+        <td>{patient.postalCode}</td>
+        <td>{patient.phone1}</td>
+        <td>{patient.phone2}</td>
+        <td>{`${patient.emergencyContact} ${patient.emergencyNumber}`}</td>
+      </tr>
+    ));
+  };
 
   return (
-    <table className={styles.patientTable}>
-      <thead className={styles.patientTableHeader}>
+    <section>
+      <table className={styles.patientTable}>
+        <thead className={styles.patientTableHeader}>
         <tr>
-          <th />
+          <th/>
           <th>username</th>
           <th>name</th>
           <th>age</th>
@@ -21,38 +39,12 @@ const PatientDataTable = () => {
           <th>secondary #</th>
           <th>emergency contact</th>
         </tr>
-      </thead>
-      <tbody className={styles.patientTableBody}>
-        <tr>
-          <td className={styles.iconCell}><i className="la la-pen" /></td>
-          <td>Joker1</td>
-          <td>Arthur Fleck</td>
-          <td>42</td>
-          <td>M</td>
-          <td>12 Clown Street</td>
-          <td>Gotham</td>
-          <td>USA</td>
-          <td>1000</td>
-          <td>(777) 777-7777</td>
-          <td />
-          <td>Batman (123) 123-2133</td>
-        </tr>
-        <tr>
-          <td className={styles.iconCell}><i className="la la-pen" /></td>
-          <td>Joker1</td>
-          <td>Arthur Fleck</td>
-          <td>42</td>
-          <td>M</td>
-          <td>12 Clown Street</td>
-          <td>Gotham</td>
-          <td>USA</td>
-          <td>1000</td>
-          <td>(777) 777-7777</td>
-          <td />
-          <td>Batman (123) 123-2133</td>
-        </tr>
-      </tbody>
-    </table>
+        </thead>
+        <tbody className={styles.patientTableBody}>
+        {renderPatientData()}
+        </tbody>
+      </table>
+    </section>
   );
 };
 

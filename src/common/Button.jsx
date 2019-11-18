@@ -7,8 +7,14 @@ const Button = ({
   disabled,
   className,
   children,
+  onClick,
 }) => (
-  <button className={[styles.button, className].join(' ')} type={type} disabled={disabled}>
+  <button
+    className={[styles.button, className].join(' ')}
+    type={type}
+    disabled={disabled}
+    onClick={onClick}
+  >
     {children}
   </button>
 );

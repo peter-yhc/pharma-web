@@ -13,7 +13,7 @@ const getPatients = async () => {
     url: `${API_HOST}/patients`,
     headers: { Authorization: localStorage.getItem('pharma.token') },
     responseType: 'json',
-  });
+  }).data.patients;
   return result;
 };
 
