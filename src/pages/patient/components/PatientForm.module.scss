@@ -1,0 +1,104 @@
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  color: var(--color-dark);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.personalDetailsSection {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-column-gap: var(--margin-1);
+  grid-template-areas:
+    "username username username"
+    "name age sex"
+    "primary-contact secondary-contact ."
+  ;
+}
+
+.username {
+  grid-area: username;
+}
+
+.name {
+  grid-area: name;
+}
+
+.dob {
+  grid-area: age;
+}
+
+.sex {
+  grid-area: sex;
+}
+
+.primary-contact {
+  grid-area: primary-contact;
+}
+
+.secondary-contact {
+  grid-area: secondary-contact;
+}
+
+.locationDetailsSection {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+  grid-template-rows: 1fr 1fr;
+  grid-column-gap: var(--margin-1);
+  grid-template-areas:
+    "address address address"
+    "city country postcode"
+  ;
+}
+
+.address {
+  grid-area: address;
+}
+
+.city {
+  grid-area: city;
+}
+
+.country {
+  grid-area: country;
+}
+
+.postcode {
+  grid-area: postcode;
+}
+
+.emergencyContactDetails {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-column-gap: var(--margin-1);
+  grid-template-areas:
+    "emergency-name emergency-number ."
+  ;
+}
+
+.emergencyName {
+  grid-area: emergency-name;
+}
+
+.emergencyNumber {
+  grid-area: emergency-number;
+}
+
+.formControls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.formInputGroup {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}

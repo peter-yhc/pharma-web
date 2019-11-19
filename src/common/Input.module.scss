@@ -1,5 +1,12 @@
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    & label {
+        margin-bottom: calc(var(--margin-1)/2);
+    }
+}
+
 .input {
-    min-width: 30vw;
     height: 50px;
     margin-bottom: var(--margin-2);
     border-radius: 4px;

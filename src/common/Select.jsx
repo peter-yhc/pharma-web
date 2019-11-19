@@ -2,17 +2,19 @@
 import React from 'react';
 import styles from './Input.module.scss';
 
-const Input = ({
-  className, customRef, label, ...props
+const Select = ({
+  className, customRef, children, label, ...props
 }) => (
   <div className={[styles.inputGroup, className].join(' ')}>
     <label htmlFor={customRef}>{label}</label>
-    <input
+    <select
       className={styles.input}
       ref={customRef}
       {...props}
-    />
+    >
+      {children}
+    </select>
   </div>
 );
 
-export default Input;
+export default Select;
