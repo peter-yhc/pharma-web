@@ -1,13 +1,13 @@
 /* eslint-disable prefer-destructuring */
-import React, { useContext, useRef } from 'react';
-import PatientContext from 'context/PatientContext';
-import { savePatient } from 'api/PharmaApi';
+import React, { useRef } from 'react';
+import {getPatientAction, savePatientAction} from 'store/actions';
+import { useDispatch } from 'react-redux';
 import CreatePatientForm from './CreatePatientForm';
 import styles from './NewPatientModal.module.scss';
 
 const NewPatientModal = () => {
   const modalRef = useRef();
-  const patientContext = useContext(PatientContext);
+  const dispatch = useDispatch();
 
   document.addEventListener('keydown', (e) => {
     const key = e.key || e.keyCode;
@@ -28,8 +28,8 @@ const NewPatientModal = () => {
 
   const handleCreateNewPatient = async (newPatientData) => {
     modalRef.current.classList.remove(styles.show);
-    await savePatient(newPatientData);
-    patientContext.reload();
+    await dispatch(savePatientAction(newPatientData));
+    await dispatch(getPatientAction());
   };
 
   return (

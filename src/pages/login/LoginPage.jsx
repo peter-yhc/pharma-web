@@ -1,11 +1,12 @@
-import React, { useReducer, useState, useContext } from 'react';
+import React, { useReducer, useState } from 'react';
 import { adminLogin } from 'api/PharmaApi';
 import { Link, Redirect } from 'react-router-dom';
 import {
   Input, LoadingButton, PageTitle, Button,
 } from 'common';
 import styles from 'pages/login/LoginPage.module.scss';
-import AuthContext from 'context/AuthContext';
+import { useDispatch } from 'react-redux';
+import { setAuthenticated } from 'store/actions';
 
 function reducer(state, action) {
   switch (action.state) {
@@ -23,17 +24,17 @@ function reducer(state, action) {
 }
 
 const LoginPage = () => {
+  const reduxDispatch = useDispatch();
   const [state, dispatch] = useReducer(reducer, { formStatus: 'clean' });
   const [username, setUsername] = useState(undefined);
   const [password, setPassword] = useState(undefined);
-  const authContext = useContext(AuthContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch({ state: 'working' });
     try {
       await adminLogin(username, password);
-      authContext.setAuthenticated(true);
+      reduxDispatch(setAuthenticated(true));
       dispatch({ state: 'success' });
     } catch (error) {
       dispatch({ state: 'error' });

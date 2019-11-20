@@ -2,25 +2,23 @@ import React from 'react';
 import styles from 'pages/patient/components/PatientDataTable.module.scss';
 
 const PatientDataTable = ({ patients }) => {
-  console.log('table', patients)
-  const renderPatientData = () => {
-    patients.map((patient) => (
-      <tr>
-        <td className={styles.iconCell}><i className="la la-pen" /></td>
-        <td>{patient.username}</td>
-        <td>{patient.name}</td>
-        <td>{patient.dob}</td>
-        <td>{patient.sex}</td>
-        <td>{patient.address}</td>
-        <td>{patient.city}</td>
-        <td>{patient.country}</td>
-        <td>{patient.postalCode}</td>
-        <td>{patient.phone1}</td>
-        <td>{patient.phone2}</td>
-        <td>{`${patient.emergencyContact} ${patient.emergencyNumber}`}</td>
-      </tr>
-    ));
-  };
+  console.log('table', patients);
+  const renderPatientData = () => patients.map((patient) => (
+    <tr>
+      <td className={styles.iconCell}><i className="la la-pen" /></td>
+      <td>{patient.username}</td>
+      <td>{patient.name}</td>
+      <td>{patient.dob}</td>
+      <td>{patient.sex}</td>
+      <td>{patient.address}</td>
+      <td>{patient.city}</td>
+      <td>{patient.country}</td>
+      <td>{patient.postalCode}</td>
+      <td>{patient.phone1}</td>
+      <td>{patient.phone2}</td>
+      <td>{`${patient.emergencyContact} ${patient.emergencyNumber}`}</td>
+    </tr>
+  ));
 
   return (
     <section>

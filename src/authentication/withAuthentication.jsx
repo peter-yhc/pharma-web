@@ -1,12 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Redirect } from 'react-router-dom';
-import AuthContext from 'context/AuthContext';
+import { useSelector } from 'react-redux';
 
 const withAuthentication = (WrappedComponent) => () => {
-  const authContext = useContext(AuthContext);
+  const authenticated = useSelector((state) => state.authenticated);
 
   return (
-    authContext.authenticated
+    authenticated
       ? <WrappedComponent />
       : <Redirect to="/login" />
   );

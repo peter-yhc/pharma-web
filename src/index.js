@@ -3,37 +3,35 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from 'App';
-import { BrowserRouter } from 'react-router-dom';
-import AuthContext from 'context/AuthContext';
-import PatientContext from 'context/PatientContext';
-import { getPatients } from 'api/PharmaApi';
+import {BrowserRouter} from 'react-router-dom';
+import {getPatients} from 'api/PharmaApi';
 import * as serviceWorker from './serviceWorker';
+import {Provider} from "react-redux";
+import store from 'store'
 
-const auth = {
-  authenticated: undefined,
-  setAuthenticated(value) {
-    this.authenticated = value;
-  },
-};
-
-const patients = {
-  data: [],
-  reload() {
-    getPatients().then((result) => {
-      console.log('done', this.data);
-      this.data = result;
-      console.log('done', this.data);
-    }).catch(() => auth.setAuthenticated(false));
-  },
-};
+// const auth = {
+//   authenticated: undefined,
+//   setAuthenticated(value) {
+//     this.authenticated = value;
+//   },
+// };
+//
+// const patients = {
+//   data: [],
+//   reload() {
+//     getPatients().then((result) => {
+//       console.log('done', this.data);
+//       this.data = result;
+//       console.log('done', this.data);
+//     }).catch(() => auth.setAuthenticated(false));
+//   },
+// };
 
 ReactDOM.render(
   <BrowserRouter>
-    <AuthContext.Provider value={auth}>
-      <PatientContext.Provider value={patients}>
-        <App />
-      </PatientContext.Provider>
-    </AuthContext.Provider>
+    <Provider store={store}>
+      <App/>
+    </Provider>
   </BrowserRouter>,
   document.getElementById('root'),
 );
