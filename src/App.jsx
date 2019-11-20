@@ -17,7 +17,7 @@ function App() {
       </header>
       <article className={styles.article}>
         <Switch>
-          <Route exact path="/" component={PatientEditorPage} />
+          <Route exact path="/" component={withAuthentication(PatientEditorPage)} />
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/signup" component={SignupPage} />
         </Switch>

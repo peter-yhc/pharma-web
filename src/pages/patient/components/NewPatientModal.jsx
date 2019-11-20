@@ -1,10 +1,13 @@
 /* eslint-disable prefer-destructuring */
-import React, { useRef } from 'react';
+import React, { useContext, useRef } from 'react';
+import PatientContext from 'context/PatientContext';
+import { savePatient } from 'api/PharmaApi';
 import CreatePatientForm from './CreatePatientForm';
 import styles from './NewPatientModal.module.scss';
 
 const NewPatientModal = () => {
   const modalRef = useRef();
+  const patientContext = useContext(PatientContext);
 
   document.addEventListener('keydown', (e) => {
     const key = e.key || e.keyCode;
@@ -23,9 +26,10 @@ const NewPatientModal = () => {
     modalRef.current.classList.remove(styles.show);
   };
 
-  const handleCreateNewPatient = (e) => {
-    e.preventDefault();
+  const handleCreateNewPatient = async (newPatientData) => {
     modalRef.current.classList.remove(styles.show);
+    await savePatient(newPatientData);
+    patientContext.reload();
   };
 
   return (
