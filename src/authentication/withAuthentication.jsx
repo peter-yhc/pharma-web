@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Redirect } from 'react-router-dom';
-import AuthContext from 'authentication/AuthContext';
+import AuthContext from 'context/AuthContext';
 
 const withAuthentication = (WrappedComponent) => () => {
   const authContext = useContext(AuthContext);

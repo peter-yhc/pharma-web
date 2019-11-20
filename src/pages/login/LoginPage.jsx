@@ -5,7 +5,7 @@ import {
   Input, LoadingButton, PageTitle, Button,
 } from 'common';
 import styles from 'pages/login/LoginPage.module.scss';
-import AuthContext from 'authentication/AuthContext';
+import AuthContext from 'context/AuthContext';
 
 function reducer(state, action) {
   switch (action.state) {

@@ -3,8 +3,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from 'App';
-import { BrowserRouter } from 'react-router-dom';
-import AuthContext from 'authentication/AuthContext';
+import {BrowserRouter} from 'react-router-dom';
+import AuthContext from 'context/AuthContext';
 import * as serviceWorker from './serviceWorker';
 
 const auth = {
@@ -17,7 +17,7 @@ const auth = {
 ReactDOM.render(
   <BrowserRouter>
     <AuthContext.Provider value={auth}>
-      <App />
+      <App/>
     </AuthContext.Provider>
   </BrowserRouter>,
   document.getElementById('root'),
