@@ -1,9 +1,9 @@
 /* eslint-disable prefer-destructuring */
 import React, { useEffect, useRef } from 'react';
-import {Button, Input, Select} from 'common';
+import { Button, Input, Select } from 'common';
 import styles from './PatientForm.module.scss';
 
-const PatientForm = ({onCancel, onSubmit}) => {
+const PatientForm = ({ onCancel, onSubmit }) => {
   const datePickerRef = useRef();
 
   useEffect(() => {
