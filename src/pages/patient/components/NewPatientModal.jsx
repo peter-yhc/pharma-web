@@ -1,6 +1,6 @@
 /* eslint-disable prefer-destructuring */
 import React, { useRef } from 'react';
-import PatientForm from './PatientForm';
+import CreatePatientForm from './CreatePatientForm';
 import styles from './NewPatientModal.module.scss';
 
 const NewPatientModal = () => {
@@ -13,7 +13,7 @@ const NewPatientModal = () => {
     }
   });
 
-  const handleNewPatient = (e) => {
+  const showModal = (e) => {
     e.preventDefault();
     modalRef.current.classList.add(styles.show);
   };
@@ -23,14 +23,19 @@ const NewPatientModal = () => {
     modalRef.current.classList.remove(styles.show);
   };
 
+  const handleCreateNewPatient = (e) => {
+    e.preventDefault();
+    modalRef.current.classList.remove(styles.show);
+  };
+
   return (
     <>
-      <a className={styles.newPatientAction} href="/#" onClick={handleNewPatient}>
+      <a className={styles.newPatientAction} href="/#" onClick={showModal}>
         New Patient
       </a>
       <div className={styles.modal} ref={modalRef}>
         <div className={styles.modalContent}>
-          <PatientForm onCancel={handleClose} onSubmit={handleNewPatient} />
+          <CreatePatientForm onCancel={handleClose} onSubmit={handleCreateNewPatient} />
         </div>
       </div>
     </>

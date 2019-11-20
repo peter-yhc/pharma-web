@@ -102,3 +102,12 @@
   justify-content: flex-start;
   align-items: center;
 }
+
+.submitButton {
+  margin-left: auto;
+  color: var(--color-white);
+  background-color: var(--theme-color);
+  &:not(:disabled):hover {
+    background-color: var(--theme-color-darker);
+  }
+}

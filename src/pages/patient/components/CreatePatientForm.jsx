@@ -1,9 +1,9 @@
 /* eslint-disable prefer-destructuring */
 import React, { useEffect, useRef } from 'react';
 import { Button, Input, Select } from 'common';
-import styles from './PatientForm.module.scss';
+import styles from './CreatePatientForm.module.scss';
 
-const PatientForm = ({ onCancel, onSubmit }) => {
+const CreatePatientForm = ({ onCancel, onSubmit }) => {
   const datePickerRef = useRef();
 
   useEffect(() => {
@@ -39,10 +39,10 @@ const PatientForm = ({ onCancel, onSubmit }) => {
       </section>
       <div className={styles.formControls}>
         <Button onClick={onCancel}>Cancel</Button>
-        <Button onClick={onSubmit}>Create</Button>
+        <Button className={styles.submitButton} onClick={onSubmit}>Create</Button>
       </div>
     </form>
   );
 };
 
-export default PatientForm;
+export default CreatePatientForm;
