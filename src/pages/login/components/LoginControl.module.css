@@ -1,9 +1,15 @@
 .loginControl {
     display: flex;
     align-items: center;
+    position: relative;
 }
 
 .loginControl > i {
     padding-right: 6px;
     font-size: 20px;
+}
+
+.logout {
+    margin-left: var(--margin-1);
+    padding: 6px 10px !important;
 }

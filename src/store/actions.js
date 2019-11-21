@@ -1,18 +1,27 @@
 import { getPatients, savePatient } from 'api/PharmaApi';
 
-const setAuthenticated = (isAuthenticated) => ({
-  type: 'AUTHENTICATED',
-  authenticated: isAuthenticated,
-});
+const setAuthenticated = (isAuthenticated) => {
+  if (!isAuthenticated) {
+    localStorage.removeItem('pharma.token');
+  }
+
+  return {
+    type: 'AUTHENTICATED',
+    authenticated: isAuthenticated,
+  };
+};
 
 const getPatientAction = () => async (dispatch) => {
   dispatch({
     type: 'GET_PATIENTS_IN_PROGRESS',
   });
-  const patients = await getPatients();
-  dispatch({
-    type: 'GET_PATIENTS_COMPLETE',
-    patients,
+  getPatients().then((patients) => {
+    dispatch({
+      type: 'GET_PATIENTS_COMPLETE',
+      patients,
+    });
+  }).catch(() => {
+    dispatch(setAuthenticated(false));
   });
 };
 

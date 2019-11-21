@@ -2,7 +2,6 @@ import React from 'react';
 import styles from 'pages/patient/components/PatientDataTable.module.scss';
 
 const PatientDataTable = ({ patients }) => {
-  console.log('table', patients);
   const renderPatientData = () => patients.map((patient) => (
     <tr>
       <td className={styles.iconCell}><i className="la la-pen" /></td>
