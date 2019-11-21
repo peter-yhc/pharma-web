@@ -6,9 +6,12 @@ const setAuthenticated = (isAuthenticated) => ({
 });
 
 const getPatientAction = () => async (dispatch) => {
+  dispatch({
+    type: 'GET_PATIENTS_IN_PROGRESS',
+  });
   const patients = await getPatients();
   dispatch({
-    type: 'GET_PATIENTS',
+    type: 'GET_PATIENTS_COMPLETE',
     patients,
   });
 };

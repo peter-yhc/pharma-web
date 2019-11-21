@@ -1,6 +1,6 @@
 /* eslint-disable prefer-destructuring */
 import React, { useRef } from 'react';
-import {getPatientAction, savePatientAction} from 'store/actions';
+import { getPatientAction, savePatientAction } from 'store/actions';
 import { useDispatch } from 'react-redux';
 import CreatePatientForm from './CreatePatientForm';
 import styles from './NewPatientModal.module.scss';
@@ -11,7 +11,7 @@ const NewPatientModal = () => {
 
   document.addEventListener('keydown', (e) => {
     const key = e.key || e.keyCode;
-    if (key === 'Escape' || key === 'Esc' || key === 27) {
+    if ((key === 'Escape' || key === 'Esc' || key === 27) && modalRef.current) {
       modalRef.current.classList.remove(styles.show);
     }
   });

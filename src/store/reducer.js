@@ -1,6 +1,7 @@
 const defaultState = {
-  authenticated: false,
+  authenticated: !!localStorage.getItem('pharma.token'),
   patients: [],
+  patientLoadingStatus: false,
 };
 
 const reducer = (state = defaultState, action) => {
@@ -10,10 +11,16 @@ const reducer = (state = defaultState, action) => {
         ...state,
         authenticated: action.authenticated,
       };
-    case 'GET_PATIENTS':
+    case 'GET_PATIENTS_IN_PROGRESS':
+      return {
+        ...state,
+        patientLoadingStatus: true,
+      };
+    case 'GET_PATIENTS_COMPLETE':
       return {
         ...state,
         patients: action.patients,
+        patientLoadingStatus: false,
       };
     case 'CREATE_PATIENT_SUCCESS':
     default:
