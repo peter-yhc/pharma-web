@@ -23,8 +23,8 @@ const PatientEditorPage = () => {
           ? <Loading />
           : (
             <>
-              <PatientDataTable patients={patients} />
               <NewPatientModal />
+              <PatientDataTable patients={patients} />
             </>
           )
       }

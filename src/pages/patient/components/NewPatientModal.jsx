@@ -33,7 +33,7 @@ const NewPatientModal = () => {
   };
 
   return (
-    <>
+    <div className={styles.container}>
       <a className={styles.newPatientAction} href="/#" onClick={showModal}>
         New Patient
       </a>
@@ -42,7 +42,7 @@ const NewPatientModal = () => {
           <CreatePatientForm onCancel={handleClose} onSubmit={handleCreateNewPatient} />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
