@@ -1,15 +1,31 @@
 /* eslint-disable prefer-destructuring */
 import React, { useEffect, useRef, useState } from 'react';
-import { Button, Input, Select } from 'common';
+import {
+  Button, Input, LoadingButton, Select,
+} from 'common';
+import { useDispatch, useSelector } from 'react-redux';
+import { resetPatientSubmission, savePatientAction } from 'store/actions';
+import ActionStatus from 'store/ActionStatus';
+import SuccessButton from 'common/SuccessButton';
 import styles from './CreatePatientForm.module.scss';
 
-const CreatePatientForm = ({ onCancel, onSubmit }) => {
+const CreatePatientForm = ({ onCancel, onSuccess }) => {
   const datePickerRef = useRef();
   const [patientData, updatePatientData] = useState({});
+  const dispatch = useDispatch();
+  const patientSubmitting = useSelector((state) => state.patientSubmitting);
 
   useEffect(() => {
     datePickerRef.current.max = new Date().toISOString().split('T')[0];
   }, []);
+
+  useEffect(() => {
+    if (patientSubmitting === ActionStatus.success) {
+      setTimeout(() => {
+        onSuccess();
+      }, 500);
+    }
+  }, [patientSubmitting]);
 
   const handleFieldUpdate = (field) => (e) => {
     updatePatientData({
@@ -18,9 +34,23 @@ const CreatePatientForm = ({ onCancel, onSubmit }) => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onSubmit(patientData);
+    await dispatch(savePatientAction(patientData));
+    setTimeout(() => {
+      dispatch(resetPatientSubmission());
+    }, 500);
+  };
+
+  const renderActionButton = () => {
+    switch (patientSubmitting) {
+      case ActionStatus.inprogress:
+        return <LoadingButton className={styles.commonButtonStyle}>Submitting</LoadingButton>;
+      case ActionStatus.success:
+        return <SuccessButton className={styles.commonButtonStyle} />;
+      default:
+        return <Button className={[styles.submitButton, styles.commonButtonStyle].join(' ')} onClick={handleSubmit}>Create</Button>;
+    }
   };
 
   return (
@@ -52,7 +82,9 @@ const CreatePatientForm = ({ onCancel, onSubmit }) => {
       </section>
       <div className={styles.formControls}>
         <Button onClick={onCancel}>Cancel</Button>
-        <Button className={styles.submitButton} onClick={handleSubmit}>Create</Button>
+        {
+          renderActionButton()
+        }
       </div>
     </form>
   );

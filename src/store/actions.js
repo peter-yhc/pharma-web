@@ -17,7 +17,7 @@ const getPatientAction = () => async (dispatch) => {
   });
   getPatients().then((patients) => {
     dispatch({
-      type: 'GET_PATIENTS_COMPLETE',
+      type: 'GET_PATIENTS_SUCCESS',
       patients,
     });
   }).catch(() => {
@@ -26,14 +26,28 @@ const getPatientAction = () => async (dispatch) => {
 };
 
 const savePatientAction = (patientData) => async (dispatch) => {
-  await savePatient(patientData);
   dispatch({
-    type: 'CREATE_PATIENT_SUCCESS',
+    type: 'CREATE_PATIENT_IN_PROGRESS',
   });
+  savePatient(patientData)
+    .then(() => {
+      dispatch({
+        type: 'CREATE_PATIENT_SUCCESS',
+      });
+    }).catch(() => {
+      dispatch({
+        type: 'CREATE_PATIENT_FAILED',
+      });
+    });
 };
+
+const resetPatientSubmission = () => ({
+  type: 'CREATE_PATIENT_INACTIVE',
+});
 
 export {
   getPatientAction,
   savePatientAction,
   setAuthenticated,
+  resetPatientSubmission,
 };

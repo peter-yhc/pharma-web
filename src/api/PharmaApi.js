@@ -3,13 +3,17 @@ import axios from 'axios';
 const API_HOST = 'https://5xacna418e.execute-api.ap-southeast-2.amazonaws.com/dev';
 
 const savePatient = async (patientData) => {
-  await axios({
-    method: 'post',
-    url: `${API_HOST}/patients`,
-    headers: { Authorization: localStorage.getItem('pharma.token') },
-    responseType: 'json',
-    data: patientData,
-  });
+  try {
+    await axios({
+      method: 'post',
+      url: `${API_HOST}/patients`,
+      headers: { Authorization: localStorage.getItem('pharma.token') },
+      responseType: 'json',
+      data: patientData,
+    });
+  } catch (e) {
+    throw Error('Failed to save patient');
+  }
 };
 
 const getPatients = async () => {

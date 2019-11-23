@@ -8,7 +8,7 @@ import Loading from 'common/Loading';
 
 const PatientEditorPage = () => {
   const patients = useSelector((state) => state.patients);
-  const isLoading = useSelector((state) => state.patientLoadingStatus);
+  const isLoading = useSelector((state) => state.patientLoading);
   const dispatch = useDispatch();
 
   useEffect(() => {

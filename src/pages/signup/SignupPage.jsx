@@ -62,7 +62,7 @@ const SignupPage = () => {
             <Input type="email" placeholder="Email" onChange={handleEmailChange} required />
             <Input type="password" placeholder="Password" onChange={handlePasswordChange} required />
             <Input type="password" placeholder="Repeat Password" onChange={handleRepeatPasswordChange} required />
-            <Button className={styles.signupButton} type="submit" disabled={disabled}>Sign up</Button>
+            <Button className={styles.signupButton} type="submit" variant="blue" disabled={disabled}>Sign up</Button>
           </form>
         </section>
       )

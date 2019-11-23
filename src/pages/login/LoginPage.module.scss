@@ -17,18 +17,9 @@
     }
 }
 
-.loginButton {
+.sharedButtonStyle {
     margin-left: auto;
-    color: var(--color-white);
-    background-color: var(--theme-color);
-    &:not(:disabled):hover {
-        background-color: var(--theme-color-darker);
-    }
-}
-
-
-.loadingButton {
-    margin-left: auto;
+    width: 120px;
 }
 
 .signupLink {

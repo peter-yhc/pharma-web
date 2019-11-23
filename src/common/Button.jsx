@@ -8,15 +8,30 @@ const Button = ({
   className,
   children,
   onClick,
-}) => (
-  <button
-    className={[styles.button, className].join(' ')}
-    type={type}
-    disabled={disabled}
-    onClick={onClick}
-  >
-    {children}
-  </button>
-);
+  variant,
+}) => {
+  let color;
+  switch (variant) {
+    case 'blue':
+      color = styles.blue;
+      break;
+    case 'green':
+      color = styles.green;
+      break;
+    default:
+      color = styles.white;
+  }
+
+  return (
+    <button
+      className={[styles.button, className, color].join(' ')}
+      type={type}
+      disabled={disabled}
+      onClick={onClick}
+    >
+      {children}
+    </button>
+  );
+};
 
 export default Button;

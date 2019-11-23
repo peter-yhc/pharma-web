@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from 'react';
+import React, { useReducer, useState, useEffect } from 'react';
 import { adminLogin } from 'api/PharmaApi';
 import { Link, Redirect } from 'react-router-dom';
 import {
@@ -28,6 +28,10 @@ const LoginPage = () => {
   const [state, dispatch] = useReducer(reducer, { formStatus: 'clean' });
   const [username, setUsername] = useState(undefined);
   const [password, setPassword] = useState(undefined);
+
+  useEffect(() => {
+    console.log(username, password);
+  }, [username, password]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -65,10 +69,10 @@ const LoginPage = () => {
             </div>
             {state.formStatus === 'working'
               ? (
-                <LoadingButton className={styles.loadingButton}>Loading</LoadingButton>
+                <LoadingButton className={styles.sharedButtonStyle}>Loading</LoadingButton>
               )
               : (
-                <Button className={styles.loginButton} type="submit" disabled={!username && !password}>
+                <Button className={styles.sharedButtonStyle} type="submit" disabled={!(username && username.length > 0 && password && password.length > 0)} variant="blue">
                   Login
                 </Button>
               )}

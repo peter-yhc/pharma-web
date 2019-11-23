@@ -26,9 +26,8 @@ const NewPatientModal = () => {
     modalRef.current.classList.remove(styles.show);
   };
 
-  const handleCreateNewPatient = async (newPatientData) => {
+  const handleSubmit = async () => {
     modalRef.current.classList.remove(styles.show);
-    await dispatch(savePatientAction(newPatientData));
     await dispatch(getPatientAction());
   };
 
@@ -39,7 +38,7 @@ const NewPatientModal = () => {
       </a>
       <div className={styles.modal} ref={modalRef}>
         <div className={styles.modalContent}>
-          <CreatePatientForm onCancel={handleClose} onSubmit={handleCreateNewPatient} />
+          <CreatePatientForm onCancel={handleClose} onSuccess={handleSubmit} />
         </div>
       </div>
     </div>
