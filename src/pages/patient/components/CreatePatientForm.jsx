@@ -22,6 +22,7 @@ const CreatePatientForm = ({ onCancel, onSuccess }) => {
   useEffect(() => {
     if (patientSubmitting === ActionStatus.success) {
       setTimeout(() => {
+        updatePatientData({});
         onSuccess();
       }, 500);
     }
