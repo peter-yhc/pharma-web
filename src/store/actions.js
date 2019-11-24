@@ -29,7 +29,7 @@ const savePatientAction = (patientData) => async (dispatch) => {
   dispatch({
     type: 'CREATE_PATIENT_IN_PROGRESS',
   });
-  savePatient(patientData)
+  await savePatient(patientData)
     .then(() => {
       dispatch({
         type: 'CREATE_PATIENT_SUCCESS',
@@ -41,13 +41,13 @@ const savePatientAction = (patientData) => async (dispatch) => {
     });
 };
 
-const resetPatientSubmission = () => ({
-  type: 'CREATE_PATIENT_INACTIVE',
+const resetPatientForm = () => ({
+  type: 'CREATE_PATIENT_RESET',
 });
 
 export {
   getPatientAction,
   savePatientAction,
   setAuthenticated,
-  resetPatientSubmission,
+  resetPatientForm,
 };

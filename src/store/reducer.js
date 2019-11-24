@@ -38,7 +38,7 @@ const reducer = (state = defaultState, action) => {
     case 'CREATE_PATIENT_RESET':
       return {
         ...state,
-        patientSubmitting: ActionStatus.inactive,
+        patientSubmitting: ActionStatus.clean,
       };
     default:
       return state;

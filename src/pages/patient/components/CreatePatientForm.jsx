@@ -4,7 +4,7 @@ import {
   Button, Input, LoadingButton, Select,
 } from 'common';
 import { useDispatch, useSelector } from 'react-redux';
-import { resetPatientSubmission, savePatientAction } from 'store/actions';
+import { resetPatientForm, savePatientAction } from 'store/actions';
 import ActionStatus from 'store/ActionStatus';
 import SuccessButton from 'common/SuccessButton';
 import styles from './CreatePatientForm.module.scss';
@@ -21,10 +21,14 @@ const CreatePatientForm = ({ onCancel, onSuccess }) => {
 
   useEffect(() => {
     if (patientSubmitting === ActionStatus.success) {
+      // delay closing the modal straight away to give indication to user
       setTimeout(() => {
-        updatePatientData({});
         onSuccess();
       }, 500);
+    }
+    if (patientSubmitting === ActionStatus.clean) {
+      // reset form
+      updatePatientData({});
     }
   }, [patientSubmitting]);
 
@@ -39,16 +43,20 @@ const CreatePatientForm = ({ onCancel, onSuccess }) => {
     e.preventDefault();
     await dispatch(savePatientAction(patientData));
     setTimeout(() => {
-      dispatch(resetPatientSubmission());
-    }, 500);
+      dispatch(resetPatientForm());
+    }, 1000);
   };
 
   const renderActionButton = () => {
     switch (patientSubmitting) {
       case ActionStatus.inprogress:
-        return <LoadingButton className={styles.commonButtonStyle}>Submitting</LoadingButton>;
+        return (
+          <LoadingButton className={styles.commonButtonStyle} variant="blue">
+            <span>Submitting</span>
+          </LoadingButton>
+        );
       case ActionStatus.success:
-        return <SuccessButton className={styles.commonButtonStyle} />;
+        return <SuccessButton className={styles.commonButtonStyle} variant="green" />;
       default:
         return <Button className={[styles.submitButton, styles.commonButtonStyle].join(' ')} onClick={handleSubmit}>Create</Button>;
     }

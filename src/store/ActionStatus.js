@@ -1,10 +1,10 @@
-const inactive = 'INACTIVE';
+const clean = 'CLEAN';
 const inprogress = 'IN PROGRESS';
 const success = 'SUCCESS';
 const failed = 'FAILED';
 
 export default {
-  inactive,
+  clean,
   inprogress,
   success,
   failed,

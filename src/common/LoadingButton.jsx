@@ -1,12 +1,12 @@
 import React from 'react';
-import defaultButtonStyle from './Button.module.scss';
+import Button from './Button';
 import styles from './LoadingButton.module.scss';
 
-const LoadingButton = ({ children, className }) => (
-  <button className={[defaultButtonStyle.button, className].join(' ')} type="button" disabled>
+const LoadingButton = ({ children, className, variant }) => (
+  <Button className={className} type="button" variant={variant}>
     <div className={styles.loadingIcon} />
     <span>{children}</span>
-  </button>
+  </Button>
 );
 
 export default LoadingButton;
